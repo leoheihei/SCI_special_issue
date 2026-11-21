@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCI 期刊专刊/特刊周报 · 主页</title>
+<style>
+  :root{--ink:#1f2937;--muted:#6b7280;--bg:#f6f7f9;--card:#fff;
+  --accent:#2563eb;--line:#e5e7eb}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);line-height:1.65;font-size:15px;
+    font-family:"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+  .wrap{max-width:860px;margin:0 auto;padding:32px 20px 72px}
+  .hero{background:linear-gradient(135deg,#1e3a8a,#2563eb 60%,#3b82f6);
+    color:#fff;border-radius:16px;padding:36px 32px;margin-bottom:28px}
+  .hero h1{margin:0 0 10px;font-size:27px;letter-spacing:.5px}
+  .hero p{margin:0;opacity:.92;font-size:14.5px;max-width:640px}
+  .hero .tags{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+  .hero .tag{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);
+    padding:2px 12px;border-radius:999px;font-size:12.5px}
+  .toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;
+    margin-bottom:16px;flex-wrap:wrap}
+  .toolbar h2{font-size:19px;margin:0}
+  .toolbar input{border:1px solid var(--line);border-radius:8px;padding:7px 12px;
+    font-size:13.5px;min-width:220px;background:var(--card);color:var(--ink);outline:none}
+  .toolbar input:focus{border-color:var(--accent)}
+  .card{display:block;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:18px 22px;margin-bottom:14px;text-decoration:none;
+    color:inherit;transition:box-shadow .15s,border-color .15s,transform .15s}
+  .card:hover{border-color:var(--accent);box-shadow:0 4px 16px rgba(37,99,235,.12);
+    transform:translateY(-1px)}
+  .card .row{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .card .date{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
+  .badge{padding:1px 10px;border-radius:999px;font-size:12px;font-weight:600}
+  .b-count{background:#e8f5e9;color:#1b5e20}
+  .b-new{background:#e3f2fd;color:#0d47a1}
+  .b-latest{background:#fff3e0;color:#e65100}
+  .card .hl{margin:8px 0 0;color:var(--muted);font-size:13.5px}
+  .empty{background:var(--card);border:1px dashed var(--line);border-radius:12px;
+    padding:26px;text-align:center;color:var(--muted)}
+  .legend{margin-top:26px;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:16px 20px;font-size:13px;color:var(--muted)}
+  .legend b{color:var(--ink)}
+  footer{margin-top:32px;color:var(--muted);font-size:12.5px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <h1>📚 SCI 期刊专刊/特刊周报</h1>
+    <p>面向碳足迹 / 水足迹 / LCA、纺织服装环境影响、PET 分离与回收三大方向，每周检索 19 本目标期刊（Springer 2 · MDPI 4 · Elsevier 11 · Wiley 1 · SAGE 1 · De Gruyter 1）的开放专刊与截稿日期。</p>
+    <div class="tags">
+      <span class="tag">每周一 09:00 自动生成</span>
+      <span class="tag">19 本目标期刊</span>
+      <span class="tag">OA / APC 费用速查</span>
+      <span class="tag">增量追踪新发现</span>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <h2>周报列表 <span style="color:var(--muted);font-weight:400;font-size:14px">共 1 期</span></h2>
+    <input id="search" type="search" placeholder="按日期筛选，如 2026-11 …" oninput="flt(this.value)">
+  </div>
+
+  <div id="list">
+    <a class="card" href="report_2026-11-20.html">
+      <div class="row">
+        <span class="date">2026-11-20</span><span class="badge b-latest">最新</span>
+        <span class="badge b-count">相关专刊 39</span>
+        <span class="badge b-new">新发现 39</span>
+      </div>
+      <p class="hl">首期基线报告：Water Research 水管理专刊与 MDPI 21 条专刊均于 11 月下旬截止，Waste Management 三条 LCA/PET 对口专刊 12-31…</p>
+    </a>
+  </div>
+  <div id="empty" class="empty" style="display:none">没有匹配的周报。</div>
+
+  <div class="legend">
+    <b>说明：</b>周报每周一 09:00 自动生成。列表按时间倒序，最新一期带「最新」标记。
+    各期数据经关键词过滤，仅保留与研究方向相关的专刊；截稿已过的条目不纳入。
+    MDPI 期刊因学术诚信争议已单独标记，请审慎选择。
+  </div>
+
+  <footer>SCI 专刊特刊周报 · 上海工程技术大学纺织服装学院 · 碳足迹/水足迹/LCA · 纺织环境足迹 · PET 回收</footer>
+</div>
+<script>
+function flt(k){k=k.trim();var n=0;
+document.querySelectorAll('#list .card').forEach(function(c){
+  var ok=!k||c.querySelector('.date').textContent.indexOf(k)>-1;
+  c.style.display=ok?'':'none';if(ok)n++;});
+document.getElementById('empty').style.display=n?'none':'block';}
+</script>
+</body>
+</html>
